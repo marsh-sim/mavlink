@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<mavlink>
+  <!-- MARSH-Sim contact info: -->
+  <!-- project URL: https://github.com/marsh-sim -->
+  <!-- mavlink ID range: 24400 - 24499 -->
+  <include>common.xml</include>
+  <version>1</version>
+  <dialect>2</dialect>
+  <enums>
+    <enum name="MARSH_COMPONENT">
+      <description>Component ids (values) for different nodes of the simulator network (flight model, controls, visualisation etc.). Components will always receive messages from the Manager relevant for their ID. Only the first component in a network with a given system ID and component ID will have its messages forwarded by the Manager, all other ones will only be treated as output (will be shadowed). This enum is a redefinition of MAV_COMP_ID_USER# messages from MAV_COMPONENT documented at https://mavlink.io/en/messages/common.html#MAV_COMPONENT</description>
+      <entry value="25" name="MARSH_COMP_ID_MANAGER">
+        <description>The simulation manager responsible for routing packets between different nodes. Typically MARSH Manager, see https://marsh-sim.github.io/manager.html</description>
+      </entry>
+      <entry value="26" name="MARSH_COMP_ID_FLIGHT_MODEL">
+        <description>Component simulating flight dynamics of the aircraft.</description>
+      </entry>
+      <entry value="27" name="MARSH_COMP_ID_CONTROLS">
+        <description>Component providing pilot control inputs.</description>
+      </entry>
+      <entry value="28" name="MARSH_COMP_ID_VISUALISATION">
+        <description>Component showing the visual situation to the pilot.</description>
+      </entry>
+      <entry value="29" name="MARSH_COMP_ID_INSTRUMENTS">
+        <description>Component implementing pilot instrument panel.</description>
+      </entry>
+      <entry value="30" name="MARSH_COMP_ID_MOVING_PLATFORM">
+        <description>Component that moves the entire cockpit for motion cueing.</description>
+      </entry>
+      <entry value="31" name="MARSH_COMP_ID_GSEAT">
+        <description>Component for in-seat motion cueing.</description>
+      </entry>
+      <entry value="32" name="MARSH_COMP_ID_EYE_TRACKER">
+        <description>Component providing gaze data of pilot eyes.</description>
+      </entry>
+      <entry value="33" name="MARSH_COMP_ID_CONTROL_LOADING">
+        <description>Component measuring and actuating forces on pilot control inputs.</description>
+      </entry>
+      <!-- Entry 68 reserved for MAV_COMP_ID_TELEMETRY_RADIO -->
+      <!-- Maximum value 99 corresponding to MAV_COMP_ID_USER75 -->
+    </enum>
+  </enums>
+  <messages>
+    <!-- Messages are defined here (optional) -->
+  </messages>
+</mavlink>
