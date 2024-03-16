@@ -4,7 +4,7 @@
   <!-- project URL: https://github.com/marsh-sim -->
   <!-- mavlink ID range: 24400 - 24499 -->
   <include>common.xml</include>
-  <version>1</version>
+  <version>2</version>
   <dialect>2</dialect>
   <enums>
     <enum name="MARSH_COMPONENT">
@@ -24,7 +24,7 @@
       <entry value="29" name="MARSH_COMP_ID_INSTRUMENTS">
         <description>Component implementing pilot instrument panel.</description>
       </entry>
-      <entry value="30" name="MARSH_COMP_ID_MOVING_PLATFORM">
+      <entry value="30" name="MARSH_COMP_ID_MOTION_PLATFORM">
         <description>Component that moves the entire cockpit for motion cueing.</description>
       </entry>
       <entry value="31" name="MARSH_COMP_ID_GSEAT">
@@ -39,8 +39,134 @@
       <!-- Entry 68 reserved for MAV_COMP_ID_TELEMETRY_RADIO -->
       <!-- Maximum value 99 corresponding to MAV_COMP_ID_USER75 -->
     </enum>
+    <enum name="CONTROL_AXIS">
+      <description>Specific axis of pilot control inputs, with order corresponding to x, y, z, r fields in MANUAL_CONTROL message.</description>
+      <entry value="0" name="CONTROL_AXIS_PITCH">
+        <description>Pitch axis, with positive values corresponding to stick forward movement, causing the vehicle to move nose down. For helicopters this is longitudinal cyclic.</description>
+      </entry>
+      <entry value="1" name="CONTROL_AXIS_ROLL">
+        <description>Roll axis, with positive values corresponding to stick right movement, causing the vehicle to roll right. For helicopters this is lateral cyclic.</description>
+      </entry>
+      <entry value="2" name="CONTROL_AXIS_THRUST">
+        <description>Main thrust, with positive values corresponding to going faster and higher. For helicopters this is collective.</description>
+      </entry>
+      <entry value="3" name="CONTROL_AXIS_YAW">
+        <description>Yaw axis, with positive values corresponding to pushing right pedal, causing the vehicle to face right direction. For helicopters this is tail collective.</description>
+      </entry>
+    </enum>
+    <!-- Named MODE instead of STATUS to avoid confusion with STATE; consistent with autopilots; corresponding to UAVCAN_NODE_MODE -->
+    <enum name="MOTION_PLATFORM_MODE">
+      <description>Mode of a motion platform system.</description>
+      <entry value="0" name="MOTION_PLATFORM_MODE_UNKNOWN">
+        <description>Mode information is unsupported on this device.</description>
+      </entry>
+      <entry value="1" name="MOTION_PLATFORM_MODE_UNINITIALIZED">
+        <description>Mode is currently not available, but may be in different condition.</description>
+      </entry>
+      <entry value="2" name="MOTION_PLATFORM_MODE_OFF">
+        <description>Platform actuators are turned off, but control system is responsive.</description>
+      </entry>
+      <entry value="3" name="MOTION_PLATFORM_MODE_SETTLED">
+        <description>Platform is in the lowest position and/or locked, appropriate for personnel entry.</description>
+      </entry>
+      <entry value="4" name="MOTION_PLATFORM_MODE_NEUTRAL">
+        <description>Platform is in a neutral reference position, not accepting movement commands.</description>
+      </entry>
+      <entry value="5" name="MOTION_PLATFORM_MODE_FROZEN">
+        <description>Platform is stopped in any position, not accepting movement commands.</description>
+      </entry>
+      <entry value="6" name="MOTION_PLATFORM_MODE_ENGAGED">
+        <description>Platform is in any position, accepting movement commands.</description>
+      </entry>
+    </enum>
+    <!-- Named HEALTH instead of ERROR_CODE to also include warnings; corresponding to UAVCAN_NODE_HEALTH -->
+    <enum name="MOTION_PLATFORM_HEALTH">
+      <description>General error state of a motion platform system.</description>
+      <entry value="0" name="MOTION_PLATFORM_HEALTH_OK">
+        <description>System is operating correctly.</description>
+      </entry>
+      <entry value="1" name="MOTION_PLATFORM_HEALTH_WARNING">
+        <description>There is at least one warning present, but operation can be continued.</description>
+      </entry>
+      <entry value="2" name="MOTION_PLATFORM_HEALTH_ERROR">
+        <description>There is a failure or misconfiguration that requires operator's attention for correct operation.</description>
+      </entry>
+      <entry value="3" name="MOTION_PLATFORM_HEALTH_CRITICAL">
+        <description>There is a major failure that requires immediate operator action to maintain safety.</description>
+      </entry>
+    </enum>
+    <enum name="REXROTH_MOTION_PLATFORM_ERROR">
+      <description>Error codes specific to eMotion Motion System from Bosch Rexroth.</description>
+      <entry value="0" name="REXROTH_MOTION_PLATFORM_ERROR_OK">
+        <description>No error.</description>
+      </entry>
+    </enum>
   </enums>
   <messages>
-    <!-- Messages are defined here (optional) -->
+    <message id="24401" name="CONTROL_LOADING_AXIS">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Send data about a control axis from a control loading system. This is the primary message for logging data from MARSH_COMP_ID_CONTROL_LOADING.</description>
+      <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
+      <field type="uint8_t" name="axis" enum="CONTROL_AXIS">Control axis on which the measurements were taken.</field>
+      <!-- Radians are more commonly used in general, but for devices like gimbals it used to be degrees, and radians in new messages -->
+      <field type="float" name="position" units="deg">Axis position</field>
+      <field type="float" name="velocity" units="deg/s">Axis velocity</field>
+      <field type="float" name="force" units="N">Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring).</field>
+    </message>
+    <message id="24402" name="MOTION_PLATFORM_STATE">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>State report for motion platform used for moving the cockpit with the pilot for motion cueing. This is the primary message for MARSH_COMP_ID_MOTION_PLATFORM</description>
+      <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
+      <field type="uint8_t" name="health" enum="MOTION_PLATFORM_STATUS">Generic system health (error and warning) status.</field>
+      <field type="uint8_t" name="mode" enum="MOTION_PLATFORM_MODE">Generic system operating mode.</field>
+      <field type="float" name="x" units="m">X axis (surge) position, positive forward.</field>
+      <field type="float" name="y" units="m">Y axis (sway) position, positive right.</field>
+      <field type="float" name="z" units="m">Z axis (heave) position, positive down.</field>
+      <!-- Almost all messages related to attitude use radians, see https://github.com/mavlink/mavlink/pull/2095; also used by Rexroth -->
+      <field type="float" name="pitch" units="rad">Pitch position, positive nose up.</field>
+      <field type="float" name="roll" units="rad">Roll position, positive right.</field>
+      <field type="float" name="yaw" units="rad">Yaw position, positive right.</field>
+      <field type="float" name="vel_x" units="m/s">X axis (surge) velocity, positive forward.</field>
+      <field type="float" name="vel_y" units="m/s">Y axis (sway) velocity, positive right.</field>
+      <field type="float" name="vel_z" units="m/s">Z axis (heave) velocity, positive down.</field>
+      <field type="float" name="vel_pitch" units="rad/s">Pitch velocity, positive nose up.</field>
+      <field type="float" name="vel_roll" units="rad/s">Roll velocity, positive right.</field>
+      <field type="float" name="vel_yaw" units="rad/s">Yaw velocity, positive right.</field>
+      <field type="float" name="acc_x" units="m/s/s">X axis (surge) acceleration, positive forward.</field>
+      <field type="float" name="acc_y" units="m/s/s">Y axis (sway) acceleration, positive right.</field>
+      <field type="float" name="acc_z" units="m/s/s">Z axis (heave) acceleration, positive down.</field>
+      <field type="float" name="acc_pitch" units="rad/s/s">Pitch acceleration, positive nose up.</field>
+      <field type="float" name="acc_roll" units="rad/s/s">Roll acceleration, positive right.</field>
+      <field type="float" name="acc_yaw" units="rad/s/s">Yaw acceleration, positive right.</field>
+    </message>
+    <message id="24403" name="REXROTH_MOTION_PLATFORM">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>State report specific for eMotion Motion System by Bosch Rexroth B.V. Values applicable to motion platforms in general are sent in MOTION_PLATFORM_STATE with the same timestamp. Actuators are numbered in a clockwise direction when looking from above, starting from the front right. Actuator position is 0 when actuator is in mid-stroke.</description>
+      <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
+      <field type="uint32_t" name="frame_count">Number of message as sent by the Motion System.</field>
+      <field type="uint32_t" name="motion_status">Motion Status variable as sent by the system.</field>
+      <field type="uint8_t" name="error_code" enum="REXROTH_MOTION_PLATFORM_ERROR">Error code extracted from motion status.</field>
+      <field type="float" name="actuator1" units="m">Current actuator 1 position.</field>
+      <field type="float" name="actuator2" units="m">Current actuator 2 position.</field>
+      <field type="float" name="actuator3" units="m">Current actuator 3 position.</field>
+      <field type="float" name="actuator4" units="m">Current actuator 4 position.</field>
+      <field type="float" name="actuator5" units="m">Current actuator 5 position.</field>
+      <field type="float" name="actuator6" units="m">Current actuator 6 position.</field>
+      <field type="float" name="platform_setpoint_x" units="m">X axis (surge) platform setpoint, positive forward.</field>
+      <field type="float" name="platform_setpoint_y" units="m">Y axis (sway) platform setpoint, positive right.</field>
+      <field type="float" name="platform_setpoint_z" units="m">Z axis (heave) platform setpoint, positive down.</field>
+      <field type="float" name="platform_setpoint_pitch" units="rad">Pitch platform setpoint, positive nose up.</field>
+      <field type="float" name="platform_setpoint_roll" units="rad">Roll platform setpoint, positive right.</field>
+      <field type="float" name="platform_setpoint_yaw" units="rad">Yaw platform setpoint, positive right.</field>
+      <field type="float" name="effect_setpoint_x" units="m">X axis (surge) special effect setpoint, positive forward.</field>
+      <field type="float" name="effect_setpoint_y" units="m">Y axis (sway) special effect setpoint, positive right.</field>
+      <field type="float" name="effect_setpoint_z" units="m">Z axis (heave) special effect setpoint, positive down.</field>
+      <field type="float" name="effect_setpoint_pitch" units="rad">Pitch special effect setpoint, positive nose up.</field>
+      <field type="float" name="effect_setpoint_roll" units="rad">Roll special effect setpoint, positive right.</field>
+      <field type="float" name="effect_setpoint_yaw" units="rad">Yaw special effect setpoint, positive right.</field>
+    </message>
   </messages>
 </mavlink>
