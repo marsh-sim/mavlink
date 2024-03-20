@@ -114,7 +114,7 @@
       <entry value="93" name="REXROTH_ERR_WA_PRESSURE_LOW"/>
       <entry value="94" name="REXROTH_ERR_WA_BRAKE_UPS_POWER_WARNING"/>
       <entry value="95" name="REXROTH_ERR_WA_MOTOR_TEMPERATURE_WARNING"/>
-      <entry value="207" name="REXROTH_ERR_WA_ES_BUFFER_CHECK_TIMEOUT"/>
+      <!-- <entry value="207" name="REXROTH_ERR_WA_ES_BUFFER_CHECK_TIMEOUT"/> -->
       <entry value="96" name="REXROTH_ERR_FD_FORCED_DISENGAGE_CIRCUIT_OPENED"/>
       <entry value="97" name="REXROTH_ERR_FD_INVALID_MODE"/>
       <entry value="98" name="REXROTH_ERR_FD_HOST_DATA_TIME_OUT"/>
@@ -181,7 +181,7 @@
       <!-- Radians are more commonly used in general, but for devices like gimbals it used to be degrees, and radians in new messages -->
       <field type="float" name="position" units="deg">Axis position</field>
       <field type="float" name="velocity" units="deg/s">Axis velocity</field>
-      <field type="float" name="force" units="N">Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring).</field>
+      <field type="float" name="force">Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring). Unit N (Newton), currently not part of mavschema.xsd</field>
     </message>
     <message id="24402" name="MOTION_PLATFORM_STATE">
       <wip/>
@@ -206,9 +206,9 @@
       <field type="float" name="acc_x" units="m/s/s">X axis (surge) acceleration, positive forward.</field>
       <field type="float" name="acc_y" units="m/s/s">Y axis (sway) acceleration, positive right.</field>
       <field type="float" name="acc_z" units="m/s/s">Z axis (heave) acceleration, positive down.</field>
-      <field type="float" name="acc_pitch" units="rad/s/s">Pitch acceleration, positive nose up.</field>
-      <field type="float" name="acc_roll" units="rad/s/s">Roll acceleration, positive right.</field>
-      <field type="float" name="acc_yaw" units="rad/s/s">Yaw acceleration, positive right.</field>
+      <field type="float" name="acc_pitch">Pitch acceleration, positive nose up. Unit rad/s/s, currently not part of mavschema.xsd</field>
+      <field type="float" name="acc_roll">Roll acceleration, positive right. Unit rad/s/s, currently not part of mavschema.xsd</field>
+      <field type="float" name="acc_yaw">Yaw acceleration, positive right. Unit rad/s/s, currently not part of mavschema.xsd</field>
     </message>
     <message id="24403" name="REXROTH_MOTION_PLATFORM">
       <wip/>
