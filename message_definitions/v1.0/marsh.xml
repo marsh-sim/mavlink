@@ -100,25 +100,25 @@
       <entry value="0" name="REXROTH_ERR_OK">
         <description>No error.</description>
       </entry>
-      <entry value="059" name="REXROTH_ERR_WA_EXCESSIVE_TORQUE_DIFFERENCE"/>
-      <entry value="060" name="REXROTH_ERR_WA_REMOTE_ACCESS_ACTIVE"/>
-      <entry value="061" name="REXROTH_ERR_WA_NON_CRITICAL_CIRCUIT_BREAKER"/>
-      <entry value="062" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_HIGH"/>
-      <entry value="063" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_LOW"/>
-      <entry value="064" name="REXROTH_ERR_WA_FRAMECOUNTER_FAIL"/>
-      <entry value="065" name="REXROTH_ERR_WA_UNEXPECTED_STARTUP"/>
-      <entry value="075" name="REXROTH_ERR_WA_UPS_BATTERY_FAIL"/>
-      <entry value="077" name="REXROTH_ERR_WA_PLATFORM_SETTLE_ERROR"/>
-      <entry value="088" name="REXROTH_ERR_WA_BLEEDER_TEMPERATURE"/>
-      <entry value="092" name="REXROTH_ERR_WA_PRESSURE_HIGH"/>
-      <entry value="093" name="REXROTH_ERR_WA_PRESSURE_LOW"/>
-      <entry value="094" name="REXROTH_ERR_WA_BRAKE_UPS_POWER_WARNING"/>
-      <entry value="095" name="REXROTH_ERR_WA_MOTOR_TEMPERATURE_WARNING"/>
+      <entry value="59" name="REXROTH_ERR_WA_EXCESSIVE_TORQUE_DIFFERENCE"/>
+      <entry value="60" name="REXROTH_ERR_WA_REMOTE_ACCESS_ACTIVE"/>
+      <entry value="61" name="REXROTH_ERR_WA_NON_CRITICAL_CIRCUIT_BREAKER"/>
+      <entry value="62" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_HIGH"/>
+      <entry value="63" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_LOW"/>
+      <entry value="64" name="REXROTH_ERR_WA_FRAMECOUNTER_FAIL"/>
+      <entry value="65" name="REXROTH_ERR_WA_UNEXPECTED_STARTUP"/>
+      <entry value="75" name="REXROTH_ERR_WA_UPS_BATTERY_FAIL"/>
+      <entry value="77" name="REXROTH_ERR_WA_PLATFORM_SETTLE_ERROR"/>
+      <entry value="88" name="REXROTH_ERR_WA_BLEEDER_TEMPERATURE"/>
+      <entry value="92" name="REXROTH_ERR_WA_PRESSURE_HIGH"/>
+      <entry value="93" name="REXROTH_ERR_WA_PRESSURE_LOW"/>
+      <entry value="94" name="REXROTH_ERR_WA_BRAKE_UPS_POWER_WARNING"/>
+      <entry value="95" name="REXROTH_ERR_WA_MOTOR_TEMPERATURE_WARNING"/>
       <entry value="207" name="REXROTH_ERR_WA_ES_BUFFER_CHECK_TIMEOUT"/>
-      <entry value="096" name="REXROTH_ERR_FD_FORCED_DISENGAGE_CIRCUIT_OPENED"/>
-      <entry value="097" name="REXROTH_ERR_FD_INVALID_MODE"/>
-      <entry value="098" name="REXROTH_ERR_FD_HOST_DATA_TIME_OUT"/>
-      <entry value="099" name="REXROTH_ERR_FD_FRAMECOUNTER_FAIL"/>
+      <entry value="96" name="REXROTH_ERR_FD_FORCED_DISENGAGE_CIRCUIT_OPENED"/>
+      <entry value="97" name="REXROTH_ERR_FD_INVALID_MODE"/>
+      <entry value="98" name="REXROTH_ERR_FD_HOST_DATA_TIME_OUT"/>
+      <entry value="99" name="REXROTH_ERR_FD_FRAMECOUNTER_FAIL"/>
       <entry value="101" name="REXROTH_ERR_FD_DOORS_AND_PADS_CIRCUIT_OPENED"/>
       <entry value="102" name="REXROTH_ERR_FD_LOADCHECK_SYSTEM_OVERLOAD"/>
       <entry value="103" name="REXROTH_ERR_FD_LOADCHECK_ACTUATOR_OVERLOAD"/>
