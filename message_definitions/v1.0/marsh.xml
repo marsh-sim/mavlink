@@ -4,7 +4,7 @@
   <!-- project URL: https://github.com/marsh-sim -->
   <!-- mavlink ID range: 24400 - 24499 -->
   <include>common.xml</include>
-  <version>2</version>
+  <version>3</version>
   <dialect>2</dialect>
   <enums>
     <enum name="MARSH_COMPONENT">
@@ -38,6 +38,19 @@
       </entry>
       <!-- Entry 68 reserved for MAV_COMP_ID_TELEMETRY_RADIO -->
       <!-- Maximum value 99 corresponding to MAV_COMP_ID_USER75 -->
+    </enum>
+    <enum name="MARSH_MODE_FLAGS">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>These values are MARSH-specific modes intended to be sent in custom_mode field of HEARTBEAT message.
+        Prefer defining values in the most significant byte (between 2^24 and 2^31) to leave the lower three bytes to contain a message id</description>
+      <entry value="0x1000000" name="MARSH_MODE_SINGLE_MESSAGE">
+        <description>Request Manager to only send one specific message, advised for very resource limited nodes or with control flow limitations like Simulink.
+          That message id should be in the lower three bytes of the mode, which can be done by adding it to the flags.</description>
+      </entry>
+      <entry value="0x2000000" name="MARSH_MODE_ALL_MESSAGES">
+        <description>Request Manager to send every message going out to any of the clients.</description>
+      </entry>
     </enum>
     <enum name="CONTROL_AXIS">
       <description>Specific axis of pilot control inputs, with order corresponding to x, y, z, r fields in MANUAL_CONTROL message.</description>
