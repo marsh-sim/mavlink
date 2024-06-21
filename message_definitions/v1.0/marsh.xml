@@ -262,5 +262,23 @@
       <field type="float" name="acc_y" units="m/s/s">Y axis (sway) acceleration, positive right.</field>
       <field type="float" name="acc_z" units="m/s/s">Z axis (heave) acceleration, positive down.</field>
     </message>
+    <message id="24405" name="EYE_TRACKING_DATA">
+      <wip />
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Data for tracking of pilot eye gaze. In multi-crew situations, additional trackers should connect with different system id.</description>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (time since system boot).</field>
+      <!-- Body frame is forward, right, down. Image coordinates and OpenXR are right, down, back (Z-negative forward) -->
+      <field type="float" name="gaze_origin_x" units="m" invalid="NaN">X axis of gaze origin point, NaN if unknown. The reference system depends on specific application.</field>
+      <field type="float" name="gaze_origin_y" units="m" invalid="NaN">Y axis of gaze origin point, NaN if unknown. The reference system depends on specific application.</field>
+      <field type="float" name="gaze_origin_z" units="m" invalid="NaN">Z axis of gaze origin point, NaN if unknown. The reference system depends on specific application.</field>
+      <field type="float" name="gaze_direction_x" invalid="NaN">X axis of gaze direction vector, expected to be normalized to unit magnitude, NaN if unknown. The reference system should match origin point.</field>
+      <field type="float" name="gaze_direction_y" invalid="NaN">Y axis of gaze direction vector, expected to be normalized to unit magnitude, NaN if unknown. The reference system should match origin point.</field>
+      <field type="float" name="gaze_direction_z" invalid="NaN">Z axis of gaze direction vector, expected to be normalized to unit magnitude, NaN if unknown. The reference system should match origin point.</field>
+      <field type="float" name="video_gaze_x" invalid="NaN">Gaze focal point on video feed x value (normalized 0..1, 0 is left, 1 is right), NaN if unknown</field>
+      <field type="float" name="video_gaze_y" invalid="NaN">Gaze focal point on video feed y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown</field>
+      <field type="uint8_t" name="surface_id" invalid="0">Identifier of surface for 2D gaze point, or an identified region when surface point is invalid. Set to zero if unknown/unused.</field>
+      <field type="float" name="surface_gaze_x" invalid="NaN">Gaze focal point on surface x value (normalized 0..1, 0 is left, 1 is right), NaN if unknown</field>
+      <field type="float" name="surface_gaze_y" invalid="NaN">Gaze focal point on surface y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown</field>
+    </message>
   </messages>
 </mavlink>
