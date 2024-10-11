@@ -4,7 +4,7 @@
   <!-- project URL: https://github.com/marsh-sim -->
   <!-- mavlink ID range: 24400 - 24499 -->
   <include>common.xml</include>
-  <version>3</version>
+  <version>4</version>
   <dialect>2</dialect>
   <enums>
     <enum name="MARSH_COMPONENT">
@@ -54,11 +54,11 @@
     </enum>
     <enum name="CONTROL_AXIS">
       <description>Specific axis of pilot control inputs, with order corresponding to x, y, z, r fields in MANUAL_CONTROL message.</description>
-      <entry value="0" name="CONTROL_AXIS_PITCH">
-        <description>Pitch axis, with positive values corresponding to stick forward movement, causing the vehicle to move nose down. For helicopters this is longitudinal cyclic.</description>
-      </entry>
-      <entry value="1" name="CONTROL_AXIS_ROLL">
+      <entry value="0" name="CONTROL_AXIS_ROLL">
         <description>Roll axis, with positive values corresponding to stick right movement, causing the vehicle to roll right. For helicopters this is lateral cyclic.</description>
+      </entry>
+      <entry value="1" name="CONTROL_AXIS_PITCH">
+        <description>Pitch axis, with positive values corresponding to stick forward movement, causing the vehicle to move nose down. For helicopters this is longitudinal cyclic.</description>
       </entry>
       <entry value="2" name="CONTROL_AXIS_THRUST">
         <description>Main thrust, with positive values corresponding to going faster and higher. For helicopters this is collective.</description>
@@ -207,20 +207,20 @@
       <field type="float" name="y" units="m">Y axis (sway) position, positive right.</field>
       <field type="float" name="z" units="m">Z axis (heave) position, positive down.</field>
       <!-- Almost all messages related to attitude use radians, see https://github.com/mavlink/mavlink/pull/2095; also used by Rexroth -->
-      <field type="float" name="pitch" units="rad">Pitch position, positive nose up.</field>
       <field type="float" name="roll" units="rad">Roll position, positive right.</field>
+      <field type="float" name="pitch" units="rad">Pitch position, positive nose up.</field>
       <field type="float" name="yaw" units="rad">Yaw position, positive right.</field>
       <field type="float" name="vel_x" units="m/s">X axis (surge) velocity, positive forward.</field>
       <field type="float" name="vel_y" units="m/s">Y axis (sway) velocity, positive right.</field>
       <field type="float" name="vel_z" units="m/s">Z axis (heave) velocity, positive down.</field>
-      <field type="float" name="vel_pitch" units="rad/s">Pitch velocity, positive nose up.</field>
       <field type="float" name="vel_roll" units="rad/s">Roll velocity, positive right.</field>
+      <field type="float" name="vel_pitch" units="rad/s">Pitch velocity, positive nose up.</field>
       <field type="float" name="vel_yaw" units="rad/s">Yaw velocity, positive right.</field>
       <field type="float" name="acc_x" units="m/s/s">X axis (surge) acceleration, positive forward.</field>
       <field type="float" name="acc_y" units="m/s/s">Y axis (sway) acceleration, positive right.</field>
       <field type="float" name="acc_z" units="m/s/s">Z axis (heave) acceleration, positive down.</field>
-      <field type="float" name="acc_pitch">Pitch acceleration, positive nose up. Unit rad/s/s, currently not part of mavschema.xsd</field>
       <field type="float" name="acc_roll">Roll acceleration, positive right. Unit rad/s/s, currently not part of mavschema.xsd</field>
+      <field type="float" name="acc_pitch">Pitch acceleration, positive nose up. Unit rad/s/s, currently not part of mavschema.xsd</field>
       <field type="float" name="acc_yaw">Yaw acceleration, positive right. Unit rad/s/s, currently not part of mavschema.xsd</field>
     </message>
     <message id="24403" name="REXROTH_MOTION_PLATFORM">
@@ -240,23 +240,22 @@
       <field type="float" name="platform_setpoint_x" units="m">X axis (surge) platform setpoint, positive forward.</field>
       <field type="float" name="platform_setpoint_y" units="m">Y axis (sway) platform setpoint, positive right.</field>
       <field type="float" name="platform_setpoint_z" units="m">Z axis (heave) platform setpoint, positive down.</field>
-      <field type="float" name="platform_setpoint_pitch" units="rad">Pitch platform setpoint, positive nose up.</field>
       <field type="float" name="platform_setpoint_roll" units="rad">Roll platform setpoint, positive right.</field>
+      <field type="float" name="platform_setpoint_pitch" units="rad">Pitch platform setpoint, positive nose up.</field>
       <field type="float" name="platform_setpoint_yaw" units="rad">Yaw platform setpoint, positive right.</field>
       <field type="float" name="effect_setpoint_x" units="m">X axis (surge) special effect setpoint, positive forward.</field>
       <field type="float" name="effect_setpoint_y" units="m">Y axis (sway) special effect setpoint, positive right.</field>
       <field type="float" name="effect_setpoint_z" units="m">Z axis (heave) special effect setpoint, positive down.</field>
-      <field type="float" name="effect_setpoint_pitch" units="rad">Pitch special effect setpoint, positive nose up.</field>
       <field type="float" name="effect_setpoint_roll" units="rad">Roll special effect setpoint, positive right.</field>
+      <field type="float" name="effect_setpoint_pitch" units="rad">Pitch special effect setpoint, positive nose up.</field>
       <field type="float" name="effect_setpoint_yaw" units="rad">Yaw special effect setpoint, positive right.</field>
     </message>
     <message id="24404" name="MOTION_CUE_EXTRA">
       <wip />
-      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>These values are an extra cue that should be added to accelerations and rotations etc. resulting from aircraft state, with the resulting cue being the sum of the latest aircraft and extra values. An example use case would be a cockpit shaker.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
-      <field type="float" name="vel_pitch" units="rad/s">Pitch velocity, positive nose up.</field>
       <field type="float" name="vel_roll" units="rad/s">Roll velocity, positive right.</field>
+      <field type="float" name="vel_pitch" units="rad/s">Pitch velocity, positive nose up.</field>
       <field type="float" name="vel_yaw" units="rad/s">Yaw velocity, positive right.</field>
       <field type="float" name="acc_x" units="m/s/s">X axis (surge) acceleration, positive forward.</field>
       <field type="float" name="acc_y" units="m/s/s">Y axis (sway) acceleration, positive right.</field>
