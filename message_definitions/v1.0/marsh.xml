@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mavlink>
+<mavlink xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../pymavlink/generator/mavschema.xsd">
   <!-- MARSH-Sim contact info: -->
   <!-- project URL: https://github.com/marsh-sim -->
   <!-- mavlink ID range: 24400 - 24499 -->
@@ -36,11 +36,17 @@
       <entry value="33" name="MARSH_COMP_ID_CONTROL_LOADING">
         <description>Component measuring and actuating forces on pilot control inputs.</description>
       </entry>
+      <entry value="34" name="MARSH_COMP_ID_VIBRATION_SOURCE">
+        <description>Component providing vibrations for system identification, road rumble, gusts, etc.</description>
+      </entry>
+      <entry value="35" name="MARSH_COMP_ID_PILOT_TARGET">
+        <description>Component providing target for the pilot to follow like controls positions, aircraft state, ILS path etc.</description>
+      </entry>
       <!-- Entry 68 reserved for MAV_COMP_ID_TELEMETRY_RADIO -->
       <!-- Maximum value 99 corresponding to MAV_COMP_ID_USER75 -->
     </enum>
     <enum name="MARSH_MODE_FLAGS">
-      <wip />
+      <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>These values are MARSH-specific modes intended to be sent in custom_mode field of HEARTBEAT message.
         Prefer defining values in the most significant byte (between 2^24 and 2^31) to leave the lower three bytes to contain a message id</description>
@@ -113,80 +119,80 @@
       <entry value="0" name="REXROTH_ERR_OK">
         <description>No error.</description>
       </entry>
-      <entry value="59" name="REXROTH_ERR_WA_EXCESSIVE_TORQUE_DIFFERENCE" />
-      <entry value="60" name="REXROTH_ERR_WA_REMOTE_ACCESS_ACTIVE" />
-      <entry value="61" name="REXROTH_ERR_WA_NON_CRITICAL_CIRCUIT_BREAKER" />
-      <entry value="62" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_HIGH" />
-      <entry value="63" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_LOW" />
-      <entry value="64" name="REXROTH_ERR_WA_FRAMECOUNTER_FAIL" />
-      <entry value="65" name="REXROTH_ERR_WA_UNEXPECTED_STARTUP" />
-      <entry value="75" name="REXROTH_ERR_WA_UPS_BATTERY_FAIL" />
-      <entry value="77" name="REXROTH_ERR_WA_PLATFORM_SETTLE_ERROR" />
-      <entry value="88" name="REXROTH_ERR_WA_BLEEDER_TEMPERATURE" />
-      <entry value="92" name="REXROTH_ERR_WA_PRESSURE_HIGH" />
-      <entry value="93" name="REXROTH_ERR_WA_PRESSURE_LOW" />
-      <entry value="94" name="REXROTH_ERR_WA_BRAKE_UPS_POWER_WARNING" />
-      <entry value="95" name="REXROTH_ERR_WA_MOTOR_TEMPERATURE_WARNING" />
+      <entry value="59" name="REXROTH_ERR_WA_EXCESSIVE_TORQUE_DIFFERENCE"/>
+      <entry value="60" name="REXROTH_ERR_WA_REMOTE_ACCESS_ACTIVE"/>
+      <entry value="61" name="REXROTH_ERR_WA_NON_CRITICAL_CIRCUIT_BREAKER"/>
+      <entry value="62" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_HIGH"/>
+      <entry value="63" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_LOW"/>
+      <entry value="64" name="REXROTH_ERR_WA_FRAMECOUNTER_FAIL"/>
+      <entry value="65" name="REXROTH_ERR_WA_UNEXPECTED_STARTUP"/>
+      <entry value="75" name="REXROTH_ERR_WA_UPS_BATTERY_FAIL"/>
+      <entry value="77" name="REXROTH_ERR_WA_PLATFORM_SETTLE_ERROR"/>
+      <entry value="88" name="REXROTH_ERR_WA_BLEEDER_TEMPERATURE"/>
+      <entry value="92" name="REXROTH_ERR_WA_PRESSURE_HIGH"/>
+      <entry value="93" name="REXROTH_ERR_WA_PRESSURE_LOW"/>
+      <entry value="94" name="REXROTH_ERR_WA_BRAKE_UPS_POWER_WARNING"/>
+      <entry value="95" name="REXROTH_ERR_WA_MOTOR_TEMPERATURE_WARNING"/>
       <!-- <entry value="207" name="REXROTH_ERR_WA_ES_BUFFER_CHECK_TIMEOUT"/> -->
-      <entry value="96" name="REXROTH_ERR_FD_FORCED_DISENGAGE_CIRCUIT_OPENED" />
-      <entry value="97" name="REXROTH_ERR_FD_INVALID_MODE" />
-      <entry value="98" name="REXROTH_ERR_FD_HOST_DATA_TIME_OUT" />
-      <entry value="99" name="REXROTH_ERR_FD_FRAMECOUNTER_FAIL" />
-      <entry value="101" name="REXROTH_ERR_FD_DOORS_AND_PADS_CIRCUIT_OPENED" />
-      <entry value="102" name="REXROTH_ERR_FD_LOADCHECK_SYSTEM_OVERLOAD" />
-      <entry value="103" name="REXROTH_ERR_FD_LOADCHECK_ACTUATOR_OVERLOAD" />
-      <entry value="104" name="REXROTH_ERR_FD_BRAKE_UPS_POWER_ERROR" />
-      <entry value="105" name="REXROTH_ERR_FD_MOTOR_TEMPERATURE_ERROR" />
-      <entry value="107" name="REXROTH_ERR_FD_MOTION_ENABLE_CIRCUIT_OPENED" />
-      <entry value="110" name="REXROTH_ERR_FD_HOST_DATA_INVALID" />
-      <entry value="113" name="REXROTH_ERR_FD_LOADCHECK_ACTUATOR_UNDERLOAD" />
-      <entry value="115" name="REXROTH_ERR_FD_SEAL_CHECK_POSITION_TOO_HIGH" />
-      <entry value="116" name="REXROTH_ERR_FD_SEAL_CHECK_POSITION_TOO_LOW" />
-      <entry value="117" name="REXROTH_ERR_FD_RAMP_NOT_UP" />
-      <entry value="120" name="REXROTH_ERR_FD_DRIVE_WARNING" />
-      <entry value="123" name="REXROTH_ERR_FD_PRESSURE_TOO_HIGH" />
-      <entry value="124" name="REXROTH_ERR_FD_PRESSURE_TOO_LOW" />
-      <entry value="125" name="REXROTH_ERR_FD_ACTUATOR_POSITION_DOES_NOT_MATCH_SWITCH_POSITION" />
-      <entry value="126" name="REXROTH_ERR_FD_SETTLED_SWITCH_NOT_DETECTED_BY_SAFETY_HOMING_PROCEDURE" />
-      <entry value="127" name="REXROTH_ERR_FD_POWER_OFF_LINE_FAILURE" />
-      <entry value="100" name="REXROTH_ERR_ES_MOTION_ENABLE_CIRCUIT_OPENED" />
-      <entry value="160" name="REXROTH_ERR_ES_EMERGENCY_STOP_CIRCUIT_OPENED" />
-      <entry value="164" name="REXROTH_ERR_ES_RAMP_NOT_UP" />
-      <entry value="172" name="REXROTH_ERR_ES_MOVE_RAMP_UP_TIMEOUT" />
-      <entry value="173" name="REXROTH_ERR_ES_MOVE_RAMP_DOWN_TIMEOUT" />
-      <entry value="174" name="REXROTH_ERR_ES_MOVE_PLATFORM_UP_TIMEOUT" />
-      <entry value="175" name="REXROTH_ERR_ES_MOVE_PLATFORM_DOWN_TIMEOUT" />
-      <entry value="184" name="REXROTH_ERR_ES_CIRCUIT_BREAKER" />
-      <entry value="185" name="REXROTH_ERR_ES_YAW_TABLE_POSITION_LIMIT_ACTIVE" />
-      <entry value="186" name="REXROTH_ERR_ES_XY_CUSHION" />
-      <entry value="193" name="REXROTH_ERR_ES_EXCESSIVE_POSITION_DIFFERENCE" />
-      <entry value="194" name="REXROTH_ERR_ES_BRAKE_POWER_FAIL" />
-      <entry value="195" name="REXROTH_ERR_ES_MANUAL_BRAKE_RELEASE" />
-      <entry value="206" name="REXROTH_ERR_ES_RAMP_SWITCH_FAILURE" />
-      <entry value="207" name="REXROTH_ERR_ES_BUFFER_CHECK_TIMEOUT" />
-      <entry value="208" name="REXROTH_ERR_ES_BUFFER_CHECK_ERROR" />
-      <entry value="209" name="REXROTH_ERR_ES_ACTUATOR_POSITION_DOES_NOT_MATCH_SWITCH_POSITION" />
-      <entry value="222" name="REXROTH_ERR_ES_BB_CONTACT_DRIVE_OPEN" />
-      <entry value="223" name="REXROTH_ERR_ES_DRIVE_ERROR" />
-      <entry value="225" name="REXROTH_ERR_ES_POWER_ON_TIMEOUT" />
-      <entry value="226" name="REXROTH_ERR_ES_POWER_OFF_TIMEOUT" />
-      <entry value="230" name="REXROTH_ERR_ES_BB_CONTACT_BLEEDER_OPEN" />
-      <entry value="231" name="REXROTH_ERR_ES_BB_CONTACT_POWER_SUPPLY_OPEN" />
-      <entry value="235" name="REXROTH_ERR_ES_DRIVE_ON_TIMEOUT" />
-      <entry value="236" name="REXROTH_ERR_ES_DRIVE_OFF_TIMEOUT" />
-      <entry value="237" name="REXROTH_ERR_ES_SMOKE_OR_FIRE_DETECTED" />
-      <entry value="238" name="REXROTH_ERR_ES_ACTUAL_TORQUE_LIMIT_INVALID" />
-      <entry value="239" name="REXROTH_ERR_ES_ABSOLUTE_ENCODER_NOT_IN_REFERENCE" />
-      <entry value="250" name="REXROTH_ERR_ES_SOFTWARE_CRASHED" />
-      <entry value="224" name="REXROTH_ERR_FB_FD_DRIVE_ERROR" />
-      <entry value="240" name="REXROTH_ERR_FB_SERCOS_BUS" />
-      <entry value="241" name="REXROTH_ERR_FB_SERCOS_SLAVE" />
-      <entry value="255" name="REXROTH_ERR_EPO_LINE_FAILURE" />
+      <entry value="96" name="REXROTH_ERR_FD_FORCED_DISENGAGE_CIRCUIT_OPENED"/>
+      <entry value="97" name="REXROTH_ERR_FD_INVALID_MODE"/>
+      <entry value="98" name="REXROTH_ERR_FD_HOST_DATA_TIME_OUT"/>
+      <entry value="99" name="REXROTH_ERR_FD_FRAMECOUNTER_FAIL"/>
+      <entry value="101" name="REXROTH_ERR_FD_DOORS_AND_PADS_CIRCUIT_OPENED"/>
+      <entry value="102" name="REXROTH_ERR_FD_LOADCHECK_SYSTEM_OVERLOAD"/>
+      <entry value="103" name="REXROTH_ERR_FD_LOADCHECK_ACTUATOR_OVERLOAD"/>
+      <entry value="104" name="REXROTH_ERR_FD_BRAKE_UPS_POWER_ERROR"/>
+      <entry value="105" name="REXROTH_ERR_FD_MOTOR_TEMPERATURE_ERROR"/>
+      <entry value="107" name="REXROTH_ERR_FD_MOTION_ENABLE_CIRCUIT_OPENED"/>
+      <entry value="110" name="REXROTH_ERR_FD_HOST_DATA_INVALID"/>
+      <entry value="113" name="REXROTH_ERR_FD_LOADCHECK_ACTUATOR_UNDERLOAD"/>
+      <entry value="115" name="REXROTH_ERR_FD_SEAL_CHECK_POSITION_TOO_HIGH"/>
+      <entry value="116" name="REXROTH_ERR_FD_SEAL_CHECK_POSITION_TOO_LOW"/>
+      <entry value="117" name="REXROTH_ERR_FD_RAMP_NOT_UP"/>
+      <entry value="120" name="REXROTH_ERR_FD_DRIVE_WARNING"/>
+      <entry value="123" name="REXROTH_ERR_FD_PRESSURE_TOO_HIGH"/>
+      <entry value="124" name="REXROTH_ERR_FD_PRESSURE_TOO_LOW"/>
+      <entry value="125" name="REXROTH_ERR_FD_ACTUATOR_POSITION_DOES_NOT_MATCH_SWITCH_POSITION"/>
+      <entry value="126" name="REXROTH_ERR_FD_SETTLED_SWITCH_NOT_DETECTED_BY_SAFETY_HOMING_PROCEDURE"/>
+      <entry value="127" name="REXROTH_ERR_FD_POWER_OFF_LINE_FAILURE"/>
+      <entry value="100" name="REXROTH_ERR_ES_MOTION_ENABLE_CIRCUIT_OPENED"/>
+      <entry value="160" name="REXROTH_ERR_ES_EMERGENCY_STOP_CIRCUIT_OPENED"/>
+      <entry value="164" name="REXROTH_ERR_ES_RAMP_NOT_UP"/>
+      <entry value="172" name="REXROTH_ERR_ES_MOVE_RAMP_UP_TIMEOUT"/>
+      <entry value="173" name="REXROTH_ERR_ES_MOVE_RAMP_DOWN_TIMEOUT"/>
+      <entry value="174" name="REXROTH_ERR_ES_MOVE_PLATFORM_UP_TIMEOUT"/>
+      <entry value="175" name="REXROTH_ERR_ES_MOVE_PLATFORM_DOWN_TIMEOUT"/>
+      <entry value="184" name="REXROTH_ERR_ES_CIRCUIT_BREAKER"/>
+      <entry value="185" name="REXROTH_ERR_ES_YAW_TABLE_POSITION_LIMIT_ACTIVE"/>
+      <entry value="186" name="REXROTH_ERR_ES_XY_CUSHION"/>
+      <entry value="193" name="REXROTH_ERR_ES_EXCESSIVE_POSITION_DIFFERENCE"/>
+      <entry value="194" name="REXROTH_ERR_ES_BRAKE_POWER_FAIL"/>
+      <entry value="195" name="REXROTH_ERR_ES_MANUAL_BRAKE_RELEASE"/>
+      <entry value="206" name="REXROTH_ERR_ES_RAMP_SWITCH_FAILURE"/>
+      <entry value="207" name="REXROTH_ERR_ES_BUFFER_CHECK_TIMEOUT"/>
+      <entry value="208" name="REXROTH_ERR_ES_BUFFER_CHECK_ERROR"/>
+      <entry value="209" name="REXROTH_ERR_ES_ACTUATOR_POSITION_DOES_NOT_MATCH_SWITCH_POSITION"/>
+      <entry value="222" name="REXROTH_ERR_ES_BB_CONTACT_DRIVE_OPEN"/>
+      <entry value="223" name="REXROTH_ERR_ES_DRIVE_ERROR"/>
+      <entry value="225" name="REXROTH_ERR_ES_POWER_ON_TIMEOUT"/>
+      <entry value="226" name="REXROTH_ERR_ES_POWER_OFF_TIMEOUT"/>
+      <entry value="230" name="REXROTH_ERR_ES_BB_CONTACT_BLEEDER_OPEN"/>
+      <entry value="231" name="REXROTH_ERR_ES_BB_CONTACT_POWER_SUPPLY_OPEN"/>
+      <entry value="235" name="REXROTH_ERR_ES_DRIVE_ON_TIMEOUT"/>
+      <entry value="236" name="REXROTH_ERR_ES_DRIVE_OFF_TIMEOUT"/>
+      <entry value="237" name="REXROTH_ERR_ES_SMOKE_OR_FIRE_DETECTED"/>
+      <entry value="238" name="REXROTH_ERR_ES_ACTUAL_TORQUE_LIMIT_INVALID"/>
+      <entry value="239" name="REXROTH_ERR_ES_ABSOLUTE_ENCODER_NOT_IN_REFERENCE"/>
+      <entry value="250" name="REXROTH_ERR_ES_SOFTWARE_CRASHED"/>
+      <entry value="224" name="REXROTH_ERR_FB_FD_DRIVE_ERROR"/>
+      <entry value="240" name="REXROTH_ERR_FB_SERCOS_BUS"/>
+      <entry value="241" name="REXROTH_ERR_FB_SERCOS_SLAVE"/>
+      <entry value="255" name="REXROTH_ERR_EPO_LINE_FAILURE"/>
     </enum>
   </enums>
   <messages>
     <message id="24401" name="CONTROL_LOADING_AXIS">
-      <wip />
+      <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Send data about a control axis from a control loading system. This is the primary message for logging data from MARSH_COMP_ID_CONTROL_LOADING.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
@@ -197,7 +203,7 @@
       <field type="float" name="force">Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring). Unit N (Newton), currently not part of mavschema.xsd</field>
     </message>
     <message id="24402" name="MOTION_PLATFORM_STATE">
-      <wip />
+      <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>State report for motion platform used for moving the cockpit with the pilot for motion cueing. This is the primary message for MARSH_COMP_ID_MOTION_PLATFORM</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
@@ -224,7 +230,7 @@
       <field type="float" name="acc_yaw">Yaw acceleration, positive right. Unit rad/s/s, currently not part of mavschema.xsd</field>
     </message>
     <message id="24403" name="REXROTH_MOTION_PLATFORM">
-      <wip />
+      <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>State report specific for eMotion Motion System by Bosch Rexroth B.V. Values applicable to motion platforms in general are sent in MOTION_PLATFORM_STATE with the same timestamp. Actuators are numbered in a clockwise direction when looking from above, starting from the front right. Actuator position is 0 when actuator is in mid-stroke.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
@@ -251,7 +257,6 @@
       <field type="float" name="effect_setpoint_yaw" units="rad">Yaw special effect setpoint, positive right.</field>
     </message>
     <message id="24404" name="MOTION_CUE_EXTRA">
-      <wip />
       <description>These values are an extra cue that should be added to accelerations and rotations etc. resulting from aircraft state, with the resulting cue being the sum of the latest aircraft and extra values. An example use case would be a cockpit shaker.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="float" name="vel_roll" units="rad/s">Roll velocity, positive right.</field>
@@ -262,7 +267,7 @@
       <field type="float" name="acc_z" units="m/s/s">Z axis (heave) acceleration, positive down.</field>
     </message>
     <message id="24405" name="EYE_TRACKING_DATA">
-      <wip />
+      <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Data for tracking of pilot eye gaze. In multi-crew situations, additional trackers should connect with different system id.</description>
       <field type="uint64_t" name="time_usec" units="us">Timestamp (time since system boot).</field>
