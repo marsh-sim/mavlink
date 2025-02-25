@@ -73,6 +73,15 @@
         <description>Yaw axis, with positive values corresponding to pushing right pedal, causing the vehicle to face right direction. For helicopters this is tail collective.</description>
       </entry>
     </enum>
+    <enum name="MARSH_MANUAL_SETPOINT_MODE">
+      <description>Usage of MANUAL_SETPOINT message, sent in mode_switch field.</description>
+      <entry value="0" name="MARSH_MANUAL_SETPOINT_MODE_TARGET">
+        <description>Values for target inceptors positions that the pilot should follow.</description>
+      </entry>
+      <entry value="1" name="MARSH_MANUAL_SETPOINT_MODE_TRIM">
+        <description>Values for inceptors trim positions, the exact meaning depends on the flight model.</description>
+      </entry>
+    </enum>
     <!-- Named MODE instead of STATUS to avoid confusion with STATE; consistent with autopilots; corresponding to UAVCAN_NODE_MODE -->
     <enum name="MOTION_PLATFORM_MODE">
       <description>Mode of a motion platform system.</description>
