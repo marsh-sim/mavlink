@@ -123,81 +123,6 @@
         <description>There is a major failure that requires immediate operator action to maintain safety.</description>
       </entry>
     </enum>
-    <enum name="REXROTH_MOTION_PLATFORM_ERROR">
-      <description>Error codes specific to eMotion Motion System from Bosch Rexroth. Details described in GENERIC-02-30-7100-IML-0700 document.</description>
-      <entry value="0" name="REXROTH_ERR_OK">
-        <description>No error.</description>
-      </entry>
-      <entry value="59" name="REXROTH_ERR_WA_EXCESSIVE_TORQUE_DIFFERENCE"/>
-      <entry value="60" name="REXROTH_ERR_WA_REMOTE_ACCESS_ACTIVE"/>
-      <entry value="61" name="REXROTH_ERR_WA_NON_CRITICAL_CIRCUIT_BREAKER"/>
-      <entry value="62" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_HIGH"/>
-      <entry value="63" name="REXROTH_ERR_WA_SEAL_CHECK_POSITION_LOW"/>
-      <entry value="64" name="REXROTH_ERR_WA_FRAMECOUNTER_FAIL"/>
-      <entry value="65" name="REXROTH_ERR_WA_UNEXPECTED_STARTUP"/>
-      <entry value="75" name="REXROTH_ERR_WA_UPS_BATTERY_FAIL"/>
-      <entry value="77" name="REXROTH_ERR_WA_PLATFORM_SETTLE_ERROR"/>
-      <entry value="88" name="REXROTH_ERR_WA_BLEEDER_TEMPERATURE"/>
-      <entry value="92" name="REXROTH_ERR_WA_PRESSURE_HIGH"/>
-      <entry value="93" name="REXROTH_ERR_WA_PRESSURE_LOW"/>
-      <entry value="94" name="REXROTH_ERR_WA_BRAKE_UPS_POWER_WARNING"/>
-      <entry value="95" name="REXROTH_ERR_WA_MOTOR_TEMPERATURE_WARNING"/>
-      <!-- <entry value="207" name="REXROTH_ERR_WA_ES_BUFFER_CHECK_TIMEOUT"/> -->
-      <entry value="96" name="REXROTH_ERR_FD_FORCED_DISENGAGE_CIRCUIT_OPENED"/>
-      <entry value="97" name="REXROTH_ERR_FD_INVALID_MODE"/>
-      <entry value="98" name="REXROTH_ERR_FD_HOST_DATA_TIME_OUT"/>
-      <entry value="99" name="REXROTH_ERR_FD_FRAMECOUNTER_FAIL"/>
-      <entry value="101" name="REXROTH_ERR_FD_DOORS_AND_PADS_CIRCUIT_OPENED"/>
-      <entry value="102" name="REXROTH_ERR_FD_LOADCHECK_SYSTEM_OVERLOAD"/>
-      <entry value="103" name="REXROTH_ERR_FD_LOADCHECK_ACTUATOR_OVERLOAD"/>
-      <entry value="104" name="REXROTH_ERR_FD_BRAKE_UPS_POWER_ERROR"/>
-      <entry value="105" name="REXROTH_ERR_FD_MOTOR_TEMPERATURE_ERROR"/>
-      <entry value="107" name="REXROTH_ERR_FD_MOTION_ENABLE_CIRCUIT_OPENED"/>
-      <entry value="110" name="REXROTH_ERR_FD_HOST_DATA_INVALID"/>
-      <entry value="113" name="REXROTH_ERR_FD_LOADCHECK_ACTUATOR_UNDERLOAD"/>
-      <entry value="115" name="REXROTH_ERR_FD_SEAL_CHECK_POSITION_TOO_HIGH"/>
-      <entry value="116" name="REXROTH_ERR_FD_SEAL_CHECK_POSITION_TOO_LOW"/>
-      <entry value="117" name="REXROTH_ERR_FD_RAMP_NOT_UP"/>
-      <entry value="120" name="REXROTH_ERR_FD_DRIVE_WARNING"/>
-      <entry value="123" name="REXROTH_ERR_FD_PRESSURE_TOO_HIGH"/>
-      <entry value="124" name="REXROTH_ERR_FD_PRESSURE_TOO_LOW"/>
-      <entry value="125" name="REXROTH_ERR_FD_ACTUATOR_POSITION_DOES_NOT_MATCH_SWITCH_POSITION"/>
-      <entry value="126" name="REXROTH_ERR_FD_SETTLED_SWITCH_NOT_DETECTED_BY_SAFETY_HOMING_PROCEDURE"/>
-      <entry value="127" name="REXROTH_ERR_FD_POWER_OFF_LINE_FAILURE"/>
-      <entry value="100" name="REXROTH_ERR_ES_MOTION_ENABLE_CIRCUIT_OPENED"/>
-      <entry value="160" name="REXROTH_ERR_ES_EMERGENCY_STOP_CIRCUIT_OPENED"/>
-      <entry value="164" name="REXROTH_ERR_ES_RAMP_NOT_UP"/>
-      <entry value="172" name="REXROTH_ERR_ES_MOVE_RAMP_UP_TIMEOUT"/>
-      <entry value="173" name="REXROTH_ERR_ES_MOVE_RAMP_DOWN_TIMEOUT"/>
-      <entry value="174" name="REXROTH_ERR_ES_MOVE_PLATFORM_UP_TIMEOUT"/>
-      <entry value="175" name="REXROTH_ERR_ES_MOVE_PLATFORM_DOWN_TIMEOUT"/>
-      <entry value="184" name="REXROTH_ERR_ES_CIRCUIT_BREAKER"/>
-      <entry value="185" name="REXROTH_ERR_ES_YAW_TABLE_POSITION_LIMIT_ACTIVE"/>
-      <entry value="186" name="REXROTH_ERR_ES_XY_CUSHION"/>
-      <entry value="193" name="REXROTH_ERR_ES_EXCESSIVE_POSITION_DIFFERENCE"/>
-      <entry value="194" name="REXROTH_ERR_ES_BRAKE_POWER_FAIL"/>
-      <entry value="195" name="REXROTH_ERR_ES_MANUAL_BRAKE_RELEASE"/>
-      <entry value="206" name="REXROTH_ERR_ES_RAMP_SWITCH_FAILURE"/>
-      <entry value="207" name="REXROTH_ERR_ES_BUFFER_CHECK_TIMEOUT"/>
-      <entry value="208" name="REXROTH_ERR_ES_BUFFER_CHECK_ERROR"/>
-      <entry value="209" name="REXROTH_ERR_ES_ACTUATOR_POSITION_DOES_NOT_MATCH_SWITCH_POSITION"/>
-      <entry value="222" name="REXROTH_ERR_ES_BB_CONTACT_DRIVE_OPEN"/>
-      <entry value="223" name="REXROTH_ERR_ES_DRIVE_ERROR"/>
-      <entry value="225" name="REXROTH_ERR_ES_POWER_ON_TIMEOUT"/>
-      <entry value="226" name="REXROTH_ERR_ES_POWER_OFF_TIMEOUT"/>
-      <entry value="230" name="REXROTH_ERR_ES_BB_CONTACT_BLEEDER_OPEN"/>
-      <entry value="231" name="REXROTH_ERR_ES_BB_CONTACT_POWER_SUPPLY_OPEN"/>
-      <entry value="235" name="REXROTH_ERR_ES_DRIVE_ON_TIMEOUT"/>
-      <entry value="236" name="REXROTH_ERR_ES_DRIVE_OFF_TIMEOUT"/>
-      <entry value="237" name="REXROTH_ERR_ES_SMOKE_OR_FIRE_DETECTED"/>
-      <entry value="238" name="REXROTH_ERR_ES_ACTUAL_TORQUE_LIMIT_INVALID"/>
-      <entry value="239" name="REXROTH_ERR_ES_ABSOLUTE_ENCODER_NOT_IN_REFERENCE"/>
-      <entry value="250" name="REXROTH_ERR_ES_SOFTWARE_CRASHED"/>
-      <entry value="224" name="REXROTH_ERR_FB_FD_DRIVE_ERROR"/>
-      <entry value="240" name="REXROTH_ERR_FB_SERCOS_BUS"/>
-      <entry value="241" name="REXROTH_ERR_FB_SERCOS_SLAVE"/>
-      <entry value="255" name="REXROTH_ERR_EPO_LINE_FAILURE"/>
-    </enum>
   </enums>
   <messages>
     <message id="24401" name="CONTROL_LOADING_AXIS">
@@ -245,7 +170,7 @@
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="uint32_t" name="frame_count">Number of message as sent by the Motion System.</field>
       <field type="uint32_t" name="motion_status">Motion Status variable as sent by the system.</field>
-      <field type="uint8_t" name="error_code" enum="REXROTH_MOTION_PLATFORM_ERROR">Error code extracted from motion status.</field>
+      <field type="uint8_t" name="error_code">Error code extracted from motion status.</field>
       <field type="float" name="actuator1" units="m">Current actuator 1 position.</field>
       <field type="float" name="actuator2" units="m">Current actuator 2 position.</field>
       <field type="float" name="actuator3" units="m">Current actuator 3 position.</field>
