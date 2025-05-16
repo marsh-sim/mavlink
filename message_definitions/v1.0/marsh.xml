@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 <mavlink xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../pymavlink/generator/mavschema.xsd">
-  <!-- MARSH-Sim contact info: -->
-  <!-- project URL: https://github.com/marsh-sim -->
-  <!-- mavlink ID range: 24400 - 24499 -->
+  <!-- Modular Architecture for Reconfigurable Simulation of Helicopters, a research manned flight simulator developed and used at Politecnico di Milano. -->
+  <!-- Documentation: https://marsh-sim.github.io/ -->
+  <!-- mavlink ID range: 52500 - 52599 -->
   <include>common.xml</include>
-  <version>4</version>
-  <dialect>2</dialect>
+  <dialect>3</dialect>
   <enums>
     <enum name="MARSH_COMPONENT">
       <description>Component ids (values) for different nodes of the simulator network (flight model, controls, visualisation etc.). Components will always receive messages from the Manager relevant for their ID. Only the first component in a network with a given system ID and component ID will have its messages forwarded by the Manager, all other ones will only be treated as output (will be shadowed). This enum is a redefinition of MAV_COMP_ID_USER# messages from MAV_COMPONENT documented at https://mavlink.io/en/messages/common.html#MAV_COMPONENT</description>
@@ -125,7 +124,7 @@
     </enum>
   </enums>
   <messages>
-    <message id="24401" name="CONTROL_LOADING_AXIS">
+    <message id="52501" name="CONTROL_LOADING_AXIS">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Send data about a control axis from a control loading system. This is the primary message for logging data from MARSH_COMP_ID_CONTROL_LOADING.</description>
@@ -136,7 +135,7 @@
       <field type="float" name="velocity" units="deg/s">Axis velocity</field>
       <field type="float" name="force">Force applied in the pilot in the direction of movement axis (not gripping force), measured at the position of pilot's third finger (ring). Unit N (Newton), currently not part of mavschema.xsd</field>
     </message>
-    <message id="24402" name="MOTION_PLATFORM_STATE">
+    <message id="52502" name="MOTION_PLATFORM_STATE">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>State report for motion platform used for moving the cockpit with the pilot for motion cueing. This is the primary message for MARSH_COMP_ID_MOTION_PLATFORM</description>
@@ -163,7 +162,7 @@
       <field type="float" name="acc_pitch">Pitch acceleration, positive nose up. Unit rad/s/s, currently not part of mavschema.xsd</field>
       <field type="float" name="acc_yaw">Yaw acceleration, positive right. Unit rad/s/s, currently not part of mavschema.xsd</field>
     </message>
-    <message id="24403" name="REXROTH_MOTION_PLATFORM">
+    <message id="52503" name="REXROTH_MOTION_PLATFORM">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>State report specific for eMotion Motion System by Bosch Rexroth B.V. Values applicable to motion platforms in general are sent in MOTION_PLATFORM_STATE with the same timestamp. Actuators are numbered in a clockwise direction when looking from above, starting from the front right. Actuator position is 0 when actuator is in mid-stroke.</description>
@@ -190,7 +189,7 @@
       <field type="float" name="effect_setpoint_pitch" units="rad">Pitch special effect setpoint, positive nose up.</field>
       <field type="float" name="effect_setpoint_yaw" units="rad">Yaw special effect setpoint, positive right.</field>
     </message>
-    <message id="24404" name="MOTION_CUE_EXTRA">
+    <message id="52504" name="MOTION_CUE_EXTRA">
       <description>These values are an extra cue that should be added to accelerations and rotations etc. resulting from aircraft state, with the resulting cue being the sum of the latest aircraft and extra values. An example use case would be a cockpit shaker.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="float" name="vel_roll" units="rad/s">Roll velocity, positive right.</field>
@@ -200,7 +199,7 @@
       <field type="float" name="acc_y" units="m/s/s">Y axis (sway) acceleration, positive right.</field>
       <field type="float" name="acc_z" units="m/s/s">Z axis (heave) acceleration, positive down.</field>
     </message>
-    <message id="24405" name="EYE_TRACKING_DATA">
+    <message id="52505" name="EYE_TRACKING_DATA">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Data for tracking of pilot eye gaze. In multi-crew situations, additional trackers should connect with different system id.</description>
