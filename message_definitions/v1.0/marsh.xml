@@ -200,8 +200,9 @@
     <message id="52505" name="EYE_TRACKING_DATA">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-      <description>Data for tracking of pilot eye gaze. In multi-crew situations, additional trackers should connect with different system id.</description>
+      <description>Data for tracking of pilot eye gaze.</description>
       <field type="uint64_t" name="time_usec" units="us">Timestamp (time since system boot).</field>
+      <field type="uint8_t" name="sensor_id" instance="true">Sensor ID, used for identifying the device and/or person tracked. Set to zero if unknown/unused.</field>
       <!-- Body frame is forward, right, down. Image coordinates and OpenXR are right, down, back (Z-negative forward) -->
       <field type="float" name="gaze_origin_x" units="m" invalid="NaN">X axis of gaze origin point, NaN if unknown. The reference system depends on specific application.</field>
       <field type="float" name="gaze_origin_y" units="m" invalid="NaN">Y axis of gaze origin point, NaN if unknown. The reference system depends on specific application.</field>
