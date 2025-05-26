@@ -6,43 +6,41 @@
   <include>common.xml</include>
   <dialect>3</dialect>
   <enums>
-    <enum name="MARSH_COMPONENT">
-      <description>Component ids (values) for different nodes of the simulator network (flight model, controls, visualisation etc.). Components will always receive messages from the Manager relevant for their ID. Only the first component in a network with a given system ID and component ID will have its messages forwarded by the Manager, all other ones will only be treated as output (will be shadowed). This enum is a redefinition of MAV_COMP_ID_USER# messages from MAV_COMPONENT documented at https://mavlink.io/en/messages/common.html#MAV_COMPONENT</description>
-      <entry value="25" name="MARSH_COMP_ID_MANAGER">
+    <enum name="MARSH_TYPE">
+      <description>Component types for different nodes of the simulator network (flight model, controls, visualisation etc.). Components will always receive messages from the Manager relevant for their type. Only the first component in a network with a given system ID and type will have its messages forwarded by the Manager, all other ones will only be treated as output (will be shadowed). This enum is an extension of MAV_TYPE documented at https://mavlink.io/en/messages/minimal.html#MAV_TYPE</description>
+      <entry value="100" name="MARSH_TYPE_MANAGER">
         <description>The simulation manager responsible for routing packets between different nodes. Typically MARSH Manager, see https://marsh-sim.github.io/manager.html</description>
       </entry>
-      <entry value="26" name="MARSH_COMP_ID_FLIGHT_MODEL">
+      <entry value="101" name="MARSH_TYPE_FLIGHT_MODEL">
         <description>Component simulating flight dynamics of the aircraft.</description>
       </entry>
-      <entry value="27" name="MARSH_COMP_ID_CONTROLS">
+      <entry value="102" name="MARSH_TYPE_CONTROLS">
         <description>Component providing pilot control inputs.</description>
       </entry>
-      <entry value="28" name="MARSH_COMP_ID_VISUALISATION">
+      <entry value="103" name="MARSH_TYPE_VISUALISATION">
         <description>Component showing the visual situation to the pilot.</description>
       </entry>
-      <entry value="29" name="MARSH_COMP_ID_INSTRUMENTS">
+      <entry value="104" name="MARSH_TYPE_INSTRUMENTS">
         <description>Component implementing pilot instrument panel.</description>
       </entry>
-      <entry value="30" name="MARSH_COMP_ID_MOTION_PLATFORM">
+      <entry value="105" name="MARSH_TYPE_MOTION_PLATFORM">
         <description>Component that moves the entire cockpit for motion cueing.</description>
       </entry>
-      <entry value="31" name="MARSH_COMP_ID_GSEAT">
+      <entry value="106" name="MARSH_TYPE_GSEAT">
         <description>Component for in-seat motion cueing.</description>
       </entry>
-      <entry value="32" name="MARSH_COMP_ID_EYE_TRACKER">
+      <entry value="107" name="MARSH_TYPE_EYE_TRACKER">
         <description>Component providing gaze data of pilot eyes.</description>
       </entry>
-      <entry value="33" name="MARSH_COMP_ID_CONTROL_LOADING">
+      <entry value="108" name="MARSH_TYPE_CONTROL_LOADING">
         <description>Component measuring and actuating forces on pilot control inputs.</description>
       </entry>
-      <entry value="34" name="MARSH_COMP_ID_VIBRATION_SOURCE">
+      <entry value="109" name="MARSH_TYPE_VIBRATION_SOURCE">
         <description>Component providing vibrations for system identification, road rumble, gusts, etc.</description>
       </entry>
-      <entry value="35" name="MARSH_COMP_ID_PILOT_TARGET">
+      <entry value="110" name="MARSH_TYPE_PILOT_TARGET">
         <description>Component providing target for the pilot to follow like controls positions, aircraft state, ILS path etc.</description>
       </entry>
-      <!-- Entry 68 reserved for MAV_COMP_ID_TELEMETRY_RADIO -->
-      <!-- Maximum value 99 corresponding to MAV_COMP_ID_USER75 -->
     </enum>
     <enum name="MARSH_MODE_FLAGS">
       <wip/>
