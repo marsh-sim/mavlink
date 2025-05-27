@@ -41,6 +41,9 @@
       <entry value="110" name="MARSH_TYPE_PILOT_TARGET">
         <description>Component providing target for the pilot to follow like controls positions, aircraft state, ILS path etc.</description>
       </entry>
+      <entry value="111" name="MARSH_TYPE_EXPERIMENT_DIRECTOR">
+        <description>Principal component controlling the main scenario of a given test, (unlike lower level PILOT_TARGET or communication-only MANAGER).</description>
+      </entry>
     </enum>
     <enum name="MARSH_MODE_FLAGS">
       <wip/>
