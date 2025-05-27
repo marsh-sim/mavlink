@@ -42,7 +42,7 @@
         <description>Component providing target for the pilot to follow like controls positions, aircraft state, ILS path etc.</description>
       </entry>
       <entry value="111" name="MARSH_TYPE_EXPERIMENT_DIRECTOR">
-        <description>Principal component controlling the main scenario of a given test, (unlike lower level PILOT_TARGET or communication-only MANAGER).</description>
+        <description>Principal component controlling the main scenario of a given test, (unlike lower level MARSH_TYPE_PILOT_TARGET or MARSH_TYPE_MANAGER for overall communication).</description>
       </entry>
     </enum>
     <enum name="MARSH_MODE_FLAGS">
@@ -128,7 +128,7 @@
     <message id="52501" name="CONTROL_LOADING_AXIS">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-      <description>Send data about a control axis from a control loading system. This is the primary message for logging data from MARSH_COMP_ID_CONTROL_LOADING.</description>
+      <description>Send data about a control axis from a control loading system. This is the primary message for logging data from MARSH_TYPE_CONTROL_LOADING.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="uint8_t" name="axis" enum="CONTROL_AXIS">Control axis on which the measurements were taken.</field>
       <!-- Radians are more commonly used in general, but for devices like gimbals it used to be degrees, and radians in new messages -->
@@ -139,7 +139,7 @@
     <message id="52502" name="MOTION_PLATFORM_STATE">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-      <description>State report for motion platform used for moving the cockpit with the pilot for motion cueing. This is the primary message for MARSH_COMP_ID_MOTION_PLATFORM</description>
+      <description>State report for motion platform used for moving the cockpit with the pilot for motion cueing. This is the primary message for MARSH_TYPE_MOTION_PLATFORM.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="uint8_t" name="health" enum="MOTION_PLATFORM_HEALTH">Generic system health (error and warning) status.</field>
       <field type="uint8_t" name="mode" enum="MOTION_PLATFORM_MODE">Generic system operating mode.</field>
@@ -203,7 +203,7 @@
     <message id="52505" name="EYE_TRACKING_DATA">
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-      <description>Data for tracking of pilot eye gaze.</description>
+      <description>Data for tracking of pilot eye gaze. This is the primary message for MARSH_TYPE_EYE_TRACKER.</description>
       <field type="uint64_t" name="time_usec" units="us">Timestamp (time since system boot).</field>
       <field type="uint8_t" name="sensor_id" instance="true">Sensor ID, used for identifying the device and/or person tracked. Set to zero if unknown/unused.</field>
       <!-- Body frame is forward, right, down. Image coordinates and OpenXR are right, down, back (Z-negative forward) -->
