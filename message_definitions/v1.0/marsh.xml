@@ -75,11 +75,14 @@
     </enum>
     <enum name="MARSH_MANUAL_SETPOINT_MODE">
       <description>Usage of MANUAL_SETPOINT message, sent in mode_switch field.</description>
-      <entry value="0" name="MARSH_MANUAL_SETPOINT_MODE_TARGET">
-        <description>Values for target inceptors positions that the pilot should follow.</description>
+      <entry value="0" name="MARSH_MANUAL_SETPOINT_MODE_DEFAULT">
+        <description>Default meaning of the message. This should be sent by inceptors when using a flight control system in separate node to differentiate from FCS outputs.</description>
       </entry>
       <entry value="1" name="MARSH_MANUAL_SETPOINT_MODE_TRIM">
         <description>Values for inceptors trim positions, the exact meaning depends on the flight model.</description>
+      </entry>
+      <entry value="2" name="MARSH_MANUAL_SETPOINT_MODE_TARGET">
+        <description>Values for target inceptors positions that the pilot should follow.</description>
       </entry>
     </enum>
     <!-- Named MODE instead of STATUS to avoid confusion with STATE; consistent with autopilots; corresponding to UAVCAN_NODE_MODE -->
