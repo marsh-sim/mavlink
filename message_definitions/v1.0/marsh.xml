@@ -197,9 +197,7 @@
       <field type="float" name="acc_z" units="m/s/s">Z axis (heave) acceleration, positive down.</field>
     </message>
     <message id="52505" name="EYE_TRACKING_DATA">
-      <wip/>
-      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-      <description>Data for tracking of pilot eye gaze. This is the primary message for MARSH_TYPE_EYE_TRACKER.</description>
+      <description>Data for tracking of pilot eye gaze. This is the primary message for MARSH_TYPE_EYE_TRACKER. This is the average information about both eyes, if you need separate measurements send information with different sensor_id.</description>
       <field type="uint64_t" name="time_usec" units="us">Timestamp (time since system boot).</field>
       <field type="uint8_t" name="sensor_id" instance="true">Sensor ID, used for identifying the device and/or person tracked. Set to zero if unknown/unused.</field>
       <!-- Body frame is forward, right, down. Image coordinates and OpenXR are right, down, back (Z-negative forward) -->
@@ -214,6 +212,7 @@
       <field type="uint8_t" name="surface_id" invalid="0">Identifier of surface for 2D gaze point, or an identified region when surface point is invalid. Set to zero if unknown/unused.</field>
       <field type="float" name="surface_gaze_x" invalid="NaN">Gaze focal point on surface x value (normalized 0..1, 0 is left, 1 is right), NaN if unknown</field>
       <field type="float" name="surface_gaze_y" invalid="NaN">Gaze focal point on surface y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown</field>
+      <field type="float" name="pupil_diameter" units="mm" invalid="NaN">Estimated pupil diameter, NaN if unknown.</field>
     </message>
   </messages>
 </mavlink>
