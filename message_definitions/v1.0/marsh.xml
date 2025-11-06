@@ -138,6 +138,108 @@
         <description>Small rapid movement between fixations. Magnitude is the total angle of movement for this event.</description>
       </entry>
     </enum>
+    <enum name="HUMAN_BODY_POINT">
+      <description>Location on human body tracked in HUMAN_BODY_POSE message. Initial 33 values correspond to points defined in MediaPipe Pose model.</description>
+      <entry value="0" name="HUMAN_BODY_POINT_NOSE">
+        <description>Nose.</description>
+      </entry>
+      <entry value="1" name="HUMAN_BODY_POINT_LEFT_EYE_INNER">
+        <description>Left eye inner.</description>
+      </entry>
+      <entry value="2" name="HUMAN_BODY_POINT_LEFT_EYE">
+        <description>Left eye.</description>
+      </entry>
+      <entry value="3" name="HUMAN_BODY_POINT_LEFT_EYE_OUTER">
+        <description>Left eye outer.</description>
+      </entry>
+      <entry value="4" name="HUMAN_BODY_POINT_RIGHT_EYE_INNER">
+        <description>Right eye inner.</description>
+      </entry>
+      <entry value="5" name="HUMAN_BODY_POINT_RIGHT_EYE">
+        <description>Right eye.</description>
+      </entry>
+      <entry value="6" name="HUMAN_BODY_POINT_RIGHT_EYE_OUTER">
+        <description>Right eye outer.</description>
+      </entry>
+      <entry value="7" name="HUMAN_BODY_POINT_LEFT_EAR">
+        <description>Left ear.</description>
+      </entry>
+      <entry value="8" name="HUMAN_BODY_POINT_RIGHT_EAR">
+        <description>Right ear.</description>
+      </entry>
+      <entry value="9" name="HUMAN_BODY_POINT_MOUTH_LEFT">
+        <description>Mouth left.</description>
+      </entry>
+      <entry value="10" name="HUMAN_BODY_POINT_MOUTH_RIGHT">
+        <description>Mouth right.</description>
+      </entry>
+      <entry value="11" name="HUMAN_BODY_POINT_LEFT_SHOULDER">
+        <description>Left shoulder.</description>
+      </entry>
+      <entry value="12" name="HUMAN_BODY_POINT_RIGHT_SHOULDER">
+        <description>Right shoulder.</description>
+      </entry>
+      <entry value="13" name="HUMAN_BODY_POINT_LEFT_ELBOW">
+        <description>Left elbow.</description>
+      </entry>
+      <entry value="14" name="HUMAN_BODY_POINT_RIGHT_ELBOW">
+        <description>Right elbow.</description>
+      </entry>
+      <entry value="15" name="HUMAN_BODY_POINT_LEFT_WRIST">
+        <description>Left wrist.</description>
+      </entry>
+      <entry value="16" name="HUMAN_BODY_POINT_RIGHT_WRIST">
+        <description>Right wrist.</description>
+      </entry>
+      <entry value="17" name="HUMAN_BODY_POINT_LEFT_PINKY">
+        <description>Left pinky.</description>
+      </entry>
+      <entry value="18" name="HUMAN_BODY_POINT_RIGHT_PINKY">
+        <description>Right pinky.</description>
+      </entry>
+      <entry value="19" name="HUMAN_BODY_POINT_LEFT_INDEX">
+        <description>Left index.</description>
+      </entry>
+      <entry value="20" name="HUMAN_BODY_POINT_RIGHT_INDEX">
+        <description>Right index.</description>
+      </entry>
+      <entry value="21" name="HUMAN_BODY_POINT_LEFT_THUMB">
+        <description>Left thumb.</description>
+      </entry>
+      <entry value="22" name="HUMAN_BODY_POINT_RIGHT_THUMB">
+        <description>Right thumb.</description>
+      </entry>
+      <entry value="23" name="HUMAN_BODY_POINT_LEFT_HIP">
+        <description>Left hip.</description>
+      </entry>
+      <entry value="24" name="HUMAN_BODY_POINT_RIGHT_HIP">
+        <description>Right hip.</description>
+      </entry>
+      <entry value="25" name="HUMAN_BODY_POINT_LEFT_KNEE">
+        <description>Left knee.</description>
+      </entry>
+      <entry value="26" name="HUMAN_BODY_POINT_RIGHT_KNEE">
+        <description>Right knee.</description>
+      </entry>
+      <entry value="27" name="HUMAN_BODY_POINT_LEFT_ANKLE">
+        <description>Left ankle.</description>
+      </entry>
+      <entry value="28" name="HUMAN_BODY_POINT_RIGHT_ANKLE">
+        <description>Right ankle.</description>
+      </entry>
+      <entry value="29" name="HUMAN_BODY_POINT_LEFT_HEEL">
+        <description>Left heel.</description>
+      </entry>
+      <entry value="30" name="HUMAN_BODY_POINT_RIGHT_HEEL">
+        <description>Right heel.</description>
+      </entry>
+      <entry value="31" name="HUMAN_BODY_POINT_LEFT_FOOT_INDEX">
+        <description>Left foot index.</description>
+      </entry>
+      <entry value="32" name="HUMAN_BODY_POINT_RIGHT_FOOT_INDEX">
+        <description>Right foot index.</description>
+      </entry>
+    </enum>
   </enums>
   <messages>
     <message id="52501" name="CONTROL_LOADING_AXIS">
@@ -213,7 +315,7 @@
     </message>
     <message id="52505" name="EYE_TRACKING_DATA">
       <description>Data for tracking of pilot eye gaze. This is the primary message for MARSH_TYPE_EYE_TRACKER. This is the average information about both eyes, if you need separate measurements send information with different sensor_id.</description>
-      <field type="uint64_t" name="time_usec" units="us">Timestamp (time since system boot).</field>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot).</field>
       <field type="uint8_t" name="sensor_id" instance="true">Sensor ID, used for identifying the device and/or person tracked. Set to zero if unknown/unused.</field>
       <!-- Body frame is forward, right, down. Image coordinates and OpenXR are right, down, back (Z-negative forward) -->
       <field type="float" name="gaze_origin_x" units="m" invalid="NaN">X axis of gaze origin point, NaN if unknown. The reference system depends on specific application.</field>
@@ -233,12 +335,25 @@
       <wip/>
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Periodic events identified in eye tracking.</description>
-      <field type="uint64_t" name="time_usec" units="us">Start timestamp (time since system boot). Should match time_usec field of EYE_TRACKING_DATA.</field>
+      <field type="uint64_t" name="time_usec" units="us">Start timestamp (UNIX Epoch time or time since system boot). Should match time_usec field of EYE_TRACKING_DATA.</field>
       <field type="uint8_t" name="sensor_id" instance="true">Sensor ID, used for identifying the device and/or person tracked. Set to zero if unknown/unused. Should match sensor_id field of EYE_TRACKING_DATA.</field>
       <field type="uint8_t" name="type" enum="EYE_TRACKING_EVENT_TYPE">Type of event.</field>
       <field type="uint64_t" name="duration" units="us" invalid="0">Duration of event. Set to zero if not applicable.</field>
       <field type="float" name="confidence">Estimator confidence between 0 and 1.</field>
       <field type="float" name="magnitude" units="deg">Magnitude of the event dependent on type. Examples: dispersion of fixation, or range of movement for saccade etc.</field>
+    </message>
+    <message id="52507" name="HUMAN_BODY_POSE">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Data for tracking of pilot body pose location.</description>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot).</field>
+      <field type="uint8_t" name="sensor_id" instance="true">Sensor ID, used for identifying the device and/or person tracked. Set to zero if unknown/unused.</field>
+      <field type="uint8_t" name="body_point" enum="HUMAN_BODY_POINT" instance="true">Specific point on the body described in this message.</field>
+      <field type="float" name="position_x" units="m" invalid="NaN">X axis of body point location, NaN if unknown. The reference system depends on specific application.</field>
+      <field type="float" name="position_y" units="m" invalid="NaN">Y axis of body point location, NaN if unknown. The reference system depends on specific application.</field>
+      <field type="float" name="position_z" units="m" invalid="NaN">Z axis of body point location, NaN if unknown. The reference system depends on specific application.</field>
+      <field type="float" name="video_x" invalid="NaN">Body point on video feed x value (normalized 0..1, 0 is left, 1 is right), NaN if unknown</field>
+      <field type="float" name="video_y" invalid="NaN">Body point on video feed y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown</field>
     </message>
   </messages>
 </mavlink>
