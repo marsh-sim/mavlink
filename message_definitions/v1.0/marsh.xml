@@ -123,6 +123,18 @@
         <description>There is a major failure that requires immediate operator action to maintain safety.</description>
       </entry>
     </enum>
+    <enum name="EYE_TRACKING_EVENT_TYPE">
+      <description>Type of event recognised from gaze data sent in EYE_TRACKING_EVENT.</description>
+      <entry value="0" name="EYE_TRACKING_EVENT_TYPE_BLINK">
+        <description>Eye was partially closed.</description>
+      </entry>
+      <entry value="1" name="EYE_TRACKING_EVENT_TYPE_FIXATION">
+        <description>Gaze remained at particular location. Magnitude is the dispersion of position.</description>
+      </entry>
+      <entry value="2" name="EYE_TRACKING_EVENT_TYPE_SACCADE">
+        <description>Small rapid movement between fixations. Magnitude is the total angle of movement for this event.</description>
+      </entry>
+    </enum>
   </enums>
   <messages>
     <message id="52501" name="CONTROL_LOADING_AXIS">
@@ -213,6 +225,17 @@
       <field type="float" name="surface_gaze_x" invalid="NaN">Gaze focal point on surface x value (normalized 0..1, 0 is left, 1 is right), NaN if unknown</field>
       <field type="float" name="surface_gaze_y" invalid="NaN">Gaze focal point on surface y value (normalized 0..1, 0 is top, 1 is bottom), NaN if unknown</field>
       <field type="float" name="pupil_diameter" units="mm" invalid="NaN">Estimated pupil diameter, NaN if unknown.</field>
+    </message>
+    <message id="52506" name="EYE_TRACKING_EVENT">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Periodic events identified in eye tracking.</description>
+      <field type="uint64_t" name="time_usec" units="us">Start timestamp (time since system boot). Should match time_usec field of EYE_TRACKING_DATA.</field>
+      <field type="uint8_t" name="sensor_id" instance="true">Sensor ID, used for identifying the device and/or person tracked. Set to zero if unknown/unused. Should match sensor_id field of EYE_TRACKING_DATA.</field>
+      <field type="uint8_t" name="type" enum="EYE_TRACKING_EVENT_TYPE">Type of event.</field>
+      <field type="uint64_t" name="duration" units="us" invalid="0">Duration of event. Set to zero if not applicable.</field>
+      <field type="float" name="confidence">Estimator confidence between 0 and 1.</field>
+      <field type="float" name="magnitude" units="deg">Magnitude of the event dependent on type. Examples: dispersion of fixation, or range of movement for saccade etc.</field>
     </message>
   </messages>
 </mavlink>
